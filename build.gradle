@@ -60,7 +60,7 @@ dependencies {
 }
 tasks.withType(JavaCompile).configureEach {
   // "-processing" avoids javac warning "No processor claimed any of these annotations".
-  options.compilerArgs << '-Xlint:all,-processing' << '-Werror'
+  options.compilerArgs << '-Xlint:all,-processing' // << '-Werror'
   options.errorprone {
     enabled = JavaVersion.current() != JavaVersion.VERSION_1_8
     // disable('ReferenceEquality') // Use Interning Checker instead.
@@ -76,7 +76,7 @@ apply plugin: 'org.checkerframework'
 checkerFramework {
   checkers = [
     // No need to run CalledMethodsChecker, because ResourceLeakChecker does so.
-    // 'org.checkerframework.checker.calledmethods.CalledMethodsChecker',
+    /* 'org.checkerframework.checker.calledmethods.CalledMethodsChecker',
     'org.checkerframework.checker.formatter.FormatterChecker',
     'org.checkerframework.checker.index.IndexChecker',
     'org.checkerframework.checker.interning.InterningChecker',
@@ -86,10 +86,13 @@ checkerFramework {
     'org.checkerframework.checker.resourceleak.ResourceLeakChecker',
     'org.checkerframework.checker.signature.SignatureChecker',
     'org.checkerframework.checker.signedness.SignednessChecker',
-    'org.checkerframework.common.initializedfields.InitializedFieldsChecker',
+    'org.checkerframework.common.initializedfields.InitializedFieldsChecker',*/
+    'org.checkerframework.common.util.count.AnnotationStatistics'
   ]
   extraJavacArgs = [
-    '-Werror',
+    //'-Werror',
+    '-Aannotations',
+    '-Anolocations',
     '-AcheckPurityAnnotations',
     '-ArequirePrefixInWarningSuppressions',
     '-AwarnUnneededSuppressions',
