@@ -1,0 +1,348 @@
+package org.plumelib.reflection;
+
+import java.util.regex.Pattern;
+import org.checkerframework.checker.regex.qual.Regex;
+
+// This is defined outside the Checker Framework because it is generally useful, and so that it can
+// be used in both the checker/ and framework/ subprojects of the Checker Framework.
+/**
+ * This class defines regular expressions for types supported by the <a
+ * href="https://checkerframework.org/manual/#signature-checker">Signature String Checker</a>.
+ */
+@org.checkerframework.framework.qual.AnnotatedFor("org.checkerframework.checker.resourceleak.ResourceLeakChecker")
+public class SignatureRegexes {
+
+    /**
+     * Do not instantiate this class.
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    private SignatureRegexes() {
+        throw new Error("Do not instantiate");
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    /// Functions on regular expressions
+    ///
+    /**
+     * Create a capturing group.
+     *
+     * @param arg a regular expression
+     * @return the argument wrapped in a capturing group
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String GROUPED(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String arg) {
+        return "(" + arg + ")";
+    }
+
+    /**
+     * Create a regex matching zero or more of the given argument (Kleene star).
+     *
+     * @param arg a regular expression
+     * @return the argument, repeated zero or more times
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String ANY(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String arg) {
+        return GROUPED(arg) + "*";
+    }
+
+    /**
+     * Create a regex that must match the entire string.
+     *
+     * @param arg a regular expression
+     * @return the argument, made to match the entire string
+     */
+    @org.checkerframework.dataflow.qual.Pure
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String ANCHORED(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String arg) {
+        return "^" + arg + "$";
+    }
+
+    /**
+     * An ungrouped alternation.
+     *
+     * @param args regular expressions
+     * @return a regex that matches any one of the arguments
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String ALTERNATE(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... args) {
+        return String.join("|", args);
+    }
+
+    /**
+     * A grouped alternation.
+     *
+     * @param args regular expressions
+     * @return a regex that matches any one of the arguments, wrapped in a capturing group
+     */
+    @org.checkerframework.dataflow.qual.SideEffectFree
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String GROUPED_ALTERNATE(@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String@org.checkerframework.checker.calledmethods.qual.CalledMethods({}) ... args) {
+        return GROUPED(ALTERNATE(args));
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    /// Building blocks for regular expressions
+    ///
+    /**
+     * An unanchored regex that matches keywords, except primitive types.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String KEYWORD_NON_PRIMITIVE_TYPE = ALTERNATE("abstract", "assert", // "boolean",
+    "break", // "byte",
+    "case", "catch", // "char",
+    "class", "const", "continue", "default", "do", // "double",
+    "else", "enum", "extends", "final", "finally", // "float",
+    "for", "if", "goto", "implements", "import", "instanceof", // "int",
+    "interface", // "long",
+    "native", "new", "package", "private", "protected", "public", "return", // "short",
+    "static", "strictfp", "super", "switch", "synchronized", "this", "throw", "throws", "transient", "try", "void", "volatile", "while");
+
+    /**
+     * An unanchored regex that matches primitive types.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String PRIMITIVE_TYPE = ALTERNATE("boolean", "byte", "char", "double", "float", "int", "long", "short");
+
+    /**
+     * A regex that matches field descriptors for primitive types.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String FD_PRIMITIVE = "[BCDFIJSZ]";
+
+    /**
+     * An unanchored regex that matches keywords.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String KEYWORD = KEYWORD_NON_PRIMITIVE_TYPE + "|" + PRIMITIVE_TYPE;
+
+    /**
+     * A regex that matches identifier tokens that are not identifiers (keywords, boolean literals,
+     * and the null literal).
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String KEYWORD_OR_LITERAL = ALTERNATE(KEYWORD, "true", "false", "null");
+
+    /**
+     * A regex that matches Java identifier tokens, as defined by the Java grammar.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String IDENTIFIER_TOKEN = "[A-Za-z_$][A-Za-z_$0-9]*";
+
+    /**
+     * A grouped regex that matches identifiers.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String IDENTIFIER = "(?!(?:" + KEYWORD_OR_LITERAL + ")\\b)" + IDENTIFIER_TOKEN;
+
+    /**
+     * An anchored regex that matches Identifier strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String IDENTIFIER_OR_PRIMITIVE_TYPE = ALTERNATE(IDENTIFIER, PRIMITIVE_TYPE);
+
+    /**
+     * An unanchored regex that matches DotSeparatedIdentifiers strings.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String DOT_SEPARATED_IDENTIFIERS = IDENTIFIER + ANY("\\." + IDENTIFIER);
+
+    /**
+     * An unanchored regex that matches slash-separated identifiers.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String SLASH_SEPARATED_IDENTIFIERS = IDENTIFIER + ANY("/" + IDENTIFIER);
+
+    /**
+     * A regex that matches the nested-class part of a class name, for one nested class.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String NESTED_ONE = "\\$[A-Za-z_0-9]+";
+
+    /**
+     * A regex that matches the nested-class part of a class name.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String NESTED = ANY(NESTED_ONE);
+
+    /**
+     * An unanchored regex that matches BinaryName strings.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String BINARY_NAME = DOT_SEPARATED_IDENTIFIERS + NESTED;
+
+    /**
+     * A regex that matches the nested-class part of a class name.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String ARRAY = "(\\[\\])*";
+
+    /**
+     * A regex that matches InternalForm strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String INTERNAL_FORM = SLASH_SEPARATED_IDENTIFIERS + NESTED;
+
+    /**
+     * A regex that matches ClassGetName, for non-primitive, non-array types.
+     */
+    private static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String CLASS_GET_NAME_NONPRIMITIVE_NONARRAY = IDENTIFIER + "(\\." + IDENTIFIER + "|" + NESTED_ONE + ")*";
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Regexes and patterns for literal Strings, one per annotation definition.
+    // Creating all the patterns at load time is a bit inefficient but is convenient for clients.
+    /**
+     * A regex that matches ArrayWithoutPackage strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String ArrayWithoutPackageRegex = ANCHORED(GROUPED(IDENTIFIER_OR_PRIMITIVE_TYPE) + ARRAY);
+
+    /**
+     * A pattern that matches ArrayWithoutPackage strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern ArrayWithoutPackagePattern = Pattern.compile(ArrayWithoutPackageRegex);
+
+    /**
+     * A regex that matches BinaryName strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String BinaryNameRegex = ANCHORED(BINARY_NAME);
+
+    /**
+     * A pattern that matches BinaryName strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern BinaryNamePattern = Pattern.compile(BinaryNameRegex);
+
+    /**
+     * A regex that matches BinaryNameWithoutPackage strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String BinaryNameWithoutPackageRegex = ANCHORED(IDENTIFIER + NESTED);
+
+    /**
+     * A pattern that matches BinaryNameWithoutPackage strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern BinaryNameWithoutPackagePattern = Pattern.compile(BinaryNameWithoutPackageRegex);
+
+    /**
+     * A regex that matches BinaryNameOrPrimitiveType strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String BinaryNameOrPrimitiveTypeRegex = ANCHORED(GROUPED_ALTERNATE(BINARY_NAME, PRIMITIVE_TYPE));
+
+    /**
+     * A pattern that matches BinaryNameOrPrimitiveType strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern BinaryNameOrPrimitiveTypePattern = Pattern.compile(BinaryNameOrPrimitiveTypeRegex);
+
+    /**
+     * A regex that matches ClassGetName strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String ClassGetNameRegex = ANCHORED(GROUPED_ALTERNATE(// non-array
+    PRIMITIVE_TYPE, CLASS_GET_NAME_NONPRIMITIVE_NONARRAY, // array
+    ("\\[+" + GROUPED_ALTERNATE(FD_PRIMITIVE, "L" + CLASS_GET_NAME_NONPRIMITIVE_NONARRAY + ";"))));
+
+    /**
+     * A pattern that matches ClassGetName strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern ClassGetNamePattern = Pattern.compile(ClassGetNameRegex);
+
+    /**
+     * A regex that matches ClassGetSimpleName strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String ClassGetSimpleNameRegex = ANCHORED(GROUPED_ALTERNATE(// empty string is a ClassGetSimpleName
+    "", IDENTIFIER_OR_PRIMITIVE_TYPE) + ARRAY);
+
+    /**
+     * A pattern that matches ClassGetSimpleName strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern ClassGetSimpleNamePattern = Pattern.compile(ClassGetSimpleNameRegex);
+
+    /**
+     * A regex that matches DotSeparatedIdentifiers strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String DotSeparatedIdentifiersRegex = ANCHORED(DOT_SEPARATED_IDENTIFIERS);
+
+    /**
+     * A pattern that matches DotSeparatedIdentifiers strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern DotSeparatedIdentifiersPattern = Pattern.compile(DotSeparatedIdentifiersRegex);
+
+    /**
+     * A regex that matches DotSeparatedIdentifiersOrPrimitiveType strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String DotSeparatedIdentifiersOrPrimitiveTypeRegex = ANCHORED(GROUPED_ALTERNATE(DOT_SEPARATED_IDENTIFIERS, PRIMITIVE_TYPE));
+
+    /**
+     * A pattern that matches DotSeparatedIdentifiersOrPrimitiveType strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern DotSeparatedIdentifiersOrPrimitiveTypePattern = Pattern.compile(DotSeparatedIdentifiersOrPrimitiveTypeRegex);
+
+    /**
+     * A regex that matches FieldDescriptor strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String FieldDescriptorRegex = ANCHORED("\\[*(" + FD_PRIMITIVE + "|L" + INTERNAL_FORM + ";)");
+
+    /**
+     * A pattern that matches FieldDescriptor strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern FieldDescriptorPattern = Pattern.compile(FieldDescriptorRegex);
+
+    /**
+     * A regex that matches FieldDescriptorWithoutPackage strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String FieldDescriptorWithoutPackageRegex = ANCHORED("(" + FD_PRIMITIVE + "|\\[+" + FD_PRIMITIVE + "|\\[L" + IDENTIFIER + NESTED + ";)");
+
+    /**
+     * A pattern that matches FieldDescriptorWithoutPackage strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern FieldDescriptorWithoutPackagePattern = Pattern.compile(FieldDescriptorWithoutPackageRegex);
+
+    /**
+     * A regex that matches FieldDescriptorForPrimitive strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String FieldDescriptorForPrimitiveRegex = ANCHORED("^[BCDFIJSZ]$");
+
+    /**
+     * A pattern that matches FieldDescriptorForPrimitive strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern FieldDescriptorForPrimitivePattern = Pattern.compile(FieldDescriptorForPrimitiveRegex);
+
+    /**
+     * A regex that matches FqBinaryName strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String FqBinaryNameRegex = ANCHORED("(" + PRIMITIVE_TYPE + "|" + BINARY_NAME + ")" + ARRAY);
+
+    /**
+     * A pattern that matches FqBinaryName strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern FqBinaryNamePattern = Pattern.compile(FqBinaryNameRegex);
+
+    /**
+     * A regex that matches FullyQualifiedName strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String FullyQualifiedNameRegex = ANCHORED("(" + PRIMITIVE_TYPE + "|" + DOT_SEPARATED_IDENTIFIERS + ")" + ARRAY);
+
+    /**
+     * A pattern that matches FullyQualifiedName strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern FullyQualifiedNamePattern = Pattern.compile(FullyQualifiedNameRegex);
+
+    /**
+     * A regex that matches Identifier strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String IdentifierRegex = ANCHORED(IDENTIFIER);
+
+    /**
+     * A pattern that matches Identifier strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern IdentifierPattern = Pattern.compile(IdentifierRegex);
+
+    /**
+     * A regex that matches IdentifierOrPrimitiveType strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String IdentifierOrPrimitiveTypeRegex = ANCHORED(IDENTIFIER_OR_PRIMITIVE_TYPE);
+
+    /**
+     * A pattern that matches IdentifierOrPrimitiveType strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern IdentifierOrPrimitiveTypePattern = Pattern.compile(IdentifierOrPrimitiveTypeRegex);
+
+    /**
+     * A regex that matches InternalForm strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String InternalFormRegex = ANCHORED(INTERNAL_FORM);
+
+    /**
+     * A pattern that matches InternalForm strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern InternalFormPattern = Pattern.compile(InternalFormRegex);
+
+    /**
+     * A regex that matches PrimitiveType strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) String PrimitiveTypeRegex = ANCHORED(PRIMITIVE_TYPE);
+
+    /**
+     * A pattern that matches PrimitiveType strings.
+     */
+    public static final @org.checkerframework.checker.calledmethods.qual.CalledMethods({}) Pattern PrimitiveTypePattern = Pattern.compile(PrimitiveTypeRegex);
+}
