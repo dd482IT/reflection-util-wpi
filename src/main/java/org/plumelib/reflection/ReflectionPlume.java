@@ -52,7 +52,6 @@ public final class ReflectionPlume {
     "allcheckers:purity.not.deterministic.call", // getInterfaces() is used as a set
     "allcheckers:method.guarantee.violated" // getInterfaces() is used as a set
   })
-  @Pure
   public static boolean isSubtype(Class<?> sub, Class<?> sup) {
     if (sub == sup) {
       return true;
@@ -113,7 +112,7 @@ public final class ReflectionPlume {
    */
   // The @ClassGetName annotation encourages proper use, even though this can take a
   // fully-qualified name (only for a non-array).
-  public static Class<?> classForName(@ClassGetName String className)
+  public static Class<?> classForName(String className)
       throws ClassNotFoundException {
     Class<?> result = primitiveClasses.get(className);
     if (result != null) {
@@ -204,7 +203,7 @@ public final class ReflectionPlume {
      * @throws FileNotFoundException if the file does not exist
      * @throws IOException if there is trouble reading the file
      */
-    public Class<?> defineClassFromFile(@BinaryName String className, String pathname)
+    public Class<?> defineClassFromFile(String className, String pathname)
         throws FileNotFoundException, IOException {
       int numbytes;
       byte[] classBytes;
@@ -241,7 +240,7 @@ public final class ReflectionPlume {
    * @throws IOException if there is trouble reading the file
    */
   // Also throws UnsupportedClassVersionError and some other exceptions.
-  public static Class<?> defineClassFromFile(@BinaryName String className, String pathname)
+  public static Class<?> defineClassFromFile(String className, String pathname)
       throws FileNotFoundException, IOException {
     return thePromiscuousLoader.defineClassFromFile(className, pathname);
   }
@@ -358,7 +357,7 @@ public final class ReflectionPlume {
     String allArgnames = method.substring(oparenpos + 1, cparenpos).trim();
     Class<?>[] argclasses = args_seen.get(allArgnames);
     if (argclasses == null) {
-      @BinaryName String[] argnames;
+      String[] argnames;
       if (allArgnames.equals("")) {
         argnames = new String[0];
       } else {
@@ -367,14 +366,14 @@ public final class ReflectionPlume {
         argnames = bnArgnames;
       }
 
-      @MonotonicNonNull Class<?>[] argclassesTmp = new Class<?>[argnames.length];
+      Class<?>[] argclassesTmp = new Class<?>[argnames.length];
       for (int i = 0; i < argnames.length; i++) {
-        @BinaryName String bnArgname = argnames[i];
-        @ClassGetName String cgnArgname = Signatures.binaryNameToClassGetName(bnArgname);
+        String bnArgname = argnames[i];
+        String cgnArgname = Signatures.binaryNameToClassGetName(bnArgname);
         argclassesTmp[i] = classForName(cgnArgname);
       }
       // TODO: Shouldn't this require a warning suppression?
-      Class<?>[] argclassesRes = (@NonNull Class<?>[]) argclassesTmp;
+      Class<?>[] argclassesRes = (Class<?>[]) argclassesTmp;
       argclasses = argclassesRes;
       args_seen.put(allArgnames, argclassesRes);
     }
@@ -392,7 +391,7 @@ public final class ReflectionPlume {
    * @throws NoSuchMethodException if the method is not found
    */
   public static Method methodForName(
-      @BinaryName String classname, String methodname, Class<?>[] params)
+      String classname, String methodname, Class<?>[] params)
       throws ClassNotFoundException, NoSuchMethodException, SecurityException {
 
     Class<?> c = Class.forName(classname);
@@ -417,7 +416,7 @@ public final class ReflectionPlume {
    * @param value new value of field; may be null iff the field is nullable
    * @throws NoSuchFieldException if the field does not exist in the object
    */
-  public static void setFinalField(Object o, String fieldName, @Interned Object value)
+  public static void setFinalField(Object o, String fieldName, Object value)
       throws NoSuchFieldException {
     Class<?> c = o.getClass();
     while (c != Object.class) { // Class is interned
@@ -449,7 +448,7 @@ public final class ReflectionPlume {
    * @return new value of field
    * @throws NoSuchFieldException if the field does not exist in the object
    */
-  public static @Nullable Object getPrivateField(Object o, String fieldName)
+  public static Object getPrivateField(Object o, String fieldName)
       throws NoSuchFieldException {
     Class<?> c = o.getClass();
     while (c != Object.class) { // Class is interned
@@ -480,7 +479,7 @@ public final class ReflectionPlume {
    * @param <T> the (inferred) least upper bound of the two arguments
    * @return the least upper bound of the two classes, or null if both are null
    */
-  public static <T> @Nullable Class<T> leastUpperBound(@Nullable Class<T> a, @Nullable Class<T> b) {
+  public static <T> Class<T> leastUpperBound(Class<T> a, Class<T> b) {
     if (a == b) {
       return a;
     } else if (a == null) {
@@ -509,7 +508,7 @@ public final class ReflectionPlume {
    * @param <T> the (inferred) least upper bound of the arguments
    * @return the least upper bound of all the given classes
    */
-  public static <T> @Nullable Class<T> leastUpperBound(@Nullable Class<T>[] classes) {
+  public static <T> Class<T> leastUpperBound(Class<T>[] classes) {
     Class<T> result = null;
     for (Class<T> clazz : classes) {
       result = leastUpperBound(result, clazz);
@@ -526,7 +525,7 @@ public final class ReflectionPlume {
    *     null
    */
   @SuppressWarnings("unchecked") // cast to Class<T>
-  public static <T> @Nullable Class<T> leastUpperBound(@PolyNull @PolyMustCall Object[] objects) {
+  public static <T> Class<T> leastUpperBound(Object[] objects) {
     Class<T> result = null;
     for (Object obj : objects) {
       if (obj != null) {
@@ -545,8 +544,8 @@ public final class ReflectionPlume {
    *     null
    */
   @SuppressWarnings("unchecked") // cast to Class<T>
-  public static <T> @Nullable Class<T> leastUpperBound(
-      List<? extends @MustCallUnknown @Nullable Object> objects) {
+  public static <T> Class<T> leastUpperBound(
+      List<? extends Object> objects) {
     Class<T> result = null;
     for (Object obj : objects) {
       if (obj != null) {

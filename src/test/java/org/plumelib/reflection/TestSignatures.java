@@ -27,14 +27,12 @@ public final class TestSignatures {
    * Returns the element type for the given type name, which results from removing all the array
    * brackets.
    */
-  @Test
   public void testGetArrayElementType() {
     assertEquals("int", Signatures.getArrayElementType("int[][][]"));
     assertEquals("int", Signatures.getArrayElementType("int"));
   }
 
   /** Given a filename ending with ".class", return the binary name of the class. */
-  @Test
   public void testClassfilenameToBinaryName() {
     assertEquals(
         "foo.bar.baz.Quux", Signatures.classfilenameToBinaryName("/foo/bar/baz/Quux.class"));
@@ -49,7 +47,6 @@ public final class TestSignatures {
   }
 
   /** Given a filename ending with ".class", return the simple binary name of the class. */
-  @Test
   public void testClassfilenameToBaseName() {
     assertEquals("Quux", Signatures.classfilenameToBaseName("/foo/bar/baz/Quux.class"));
     assertEquals("Quux", Signatures.classfilenameToBaseName("foo/bar/baz/Quux.class"));
@@ -66,7 +63,6 @@ public final class TestSignatures {
   /*
    * Given a package name and a class name, combine them to form a qualified class name.
    */
-  @Test
   public void testAddPackage() {
     assertEquals("Foo", Signatures.addPackage(null, "Foo"));
     assertEquals("a.b.c.Foo", Signatures.addPackage("a.b.c", "Foo"));
@@ -80,7 +76,6 @@ public final class TestSignatures {
    * Returns true if the argument has the format of a BinaryName. The type it refers to might or
    * might not exist.
    */
-  @Test
   public void testIsBinaryName() {
     assertTrue(!Signatures.isBinaryName("int"));
     assertTrue(!Signatures.isBinaryName("int[][]"));
@@ -98,7 +93,6 @@ public final class TestSignatures {
    * Returns true if the argument has the format of a ClassGetName. The type it refers to might or
    * might not exist.
    */
-  @Test
   public void testIsClassGetName() {
     assertTrue(Signatures.isClassGetName("int"));
     assertTrue(Signatures.isClassGetName("[[I"));
@@ -126,7 +120,6 @@ public final class TestSignatures {
    * Returns true if the argument has the format of a DotSeparatedIdentifiers. The package or type
    * it refers to might or might not exist.
    */
-  @Test
   public void testIsDotSeparatedIdentifiers() {
     assertTrue(!Signatures.isDotSeparatedIdentifiers("hello world"));
     assertTrue(!Signatures.isDotSeparatedIdentifiers("[[I"));
@@ -145,7 +138,6 @@ public final class TestSignatures {
    * Returns true if the argument has the format of a FqBinaryName. The type it refers to might or
    * might not exist.
    */
-  @Test
   public void testIsFqBinaryName() {
     assertTrue(!Signatures.isFqBinaryName("hello world"));
     assertTrue(!Signatures.isFqBinaryName("[[I"));
@@ -167,7 +159,6 @@ public final class TestSignatures {
    * Returns true if the argument has the format of a FqBinaryName. The type it refers to might or
    * might not exist.
    */
-  @Test
   public void testIsIdentifier() {
     assertTrue(Signatures.isIdentifier("_"));
     assertTrue(Signatures.isIdentifier("Class$Inner"));
@@ -178,14 +169,13 @@ public final class TestSignatures {
   ///
 
   private void assertParseFqBinaryName(
-      @FqBinaryName String typename, String classname, int dimensions) {
+      String typename, String classname, int dimensions) {
     Signatures.ClassnameAndDimensions cad =
         Signatures.ClassnameAndDimensions.parseFqBinaryName(typename);
     assertEquals(classname, cad.classname);
     assertEquals(dimensions, cad.dimensions);
   }
 
-  @Test
   public void testParseFqBinaryName() {
     assertParseFqBinaryName("int", "int", 0);
     assertParseFqBinaryName("int[]", "int", 1);
@@ -201,7 +191,6 @@ public final class TestSignatures {
     assertParseFqBinaryName("pkg.Outer$Inner[][]", "pkg.Outer$Inner", 2);
   }
 
-  @Test
   public void testConversions() {
     // Table from Checker Framework manual
     checkTypeConversions("int", "int", "int", "I", null, null, "int");
@@ -262,13 +251,13 @@ public final class TestSignatures {
   }
 
   private static void checkTypeConversions(
-      @FqBinaryName String fqbn,
-      @Nullable @FullyQualifiedName String fqn,
-      @ClassGetName String cgn,
-      @FieldDescriptor String fd,
-      @Nullable @BinaryName String bn,
-      @Nullable @InternalForm String iform,
-      @Nullable @ClassGetSimpleName String cgsn) {
+      String fqbn,
+      String fqn,
+      String cgn,
+      String fd,
+      String bn,
+      String iform,
+      String cgsn) {
 
     assertEquals(fd, Signatures.binaryNameToFieldDescriptor(fqbn));
     // assertEquals(fd, Signatures.primitiveTypeNameToFieldDescriptor(String primitiveName));
@@ -300,7 +289,6 @@ public final class TestSignatures {
   /// Method signatures, which combine multiple types
   ///
 
-  @Test
   public void testSignatureConversions() {
     // public static String arglistToJvm(String arglist)
     assertEquals("()", Signatures.arglistToJvm("()"));

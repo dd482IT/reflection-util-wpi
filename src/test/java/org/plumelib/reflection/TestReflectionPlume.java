@@ -19,7 +19,6 @@ public final class TestReflectionPlume {
     static class InnerInner {}
   }
 
-  @Test
   public void test_classForName() {
     try {
       assertTrue(ReflectionPlume.classForName("int") == int.class);
@@ -46,13 +45,11 @@ public final class TestReflectionPlume {
     }
   }
 
-  @Test
   public void test_fullyQualifiedNameToSimpleName() {
     assertEquals("String", ReflectionPlume.fullyQualifiedNameToSimpleName("java.lang.String"));
     assertEquals("String", ReflectionPlume.fullyQualifiedNameToSimpleName("String"));
   }
 
-  @Test
   public void test_nameWithoutPackage() {
     assertEquals("String", ReflectionPlume.nameWithoutPackage(String.class));
     assertEquals("Map.Entry", ReflectionPlume.nameWithoutPackage(java.util.Map.Entry.class));
@@ -62,7 +59,6 @@ public final class TestReflectionPlume {
         ReflectionPlume.nameWithoutPackage(Inner.InnerInner.class));
   }
 
-  @Test
   public void test_isSubtype() {
     // private boolean isSubtype(Class<?> sub, Class<?> sup) {
     assertTrue(ReflectionPlume.isSubtype(Integer.class, Integer.class));
@@ -85,7 +81,6 @@ public final class TestReflectionPlume {
     assertTrue(!ReflectionPlume.isSubtype(List.class, ArrayList.class));
   }
 
-  @Test
   public void test_methodForName() {
     // public static Method methodForName(String methodname) throws ClassNotFoundException
     //

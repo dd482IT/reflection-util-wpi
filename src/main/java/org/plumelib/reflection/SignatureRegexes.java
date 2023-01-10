@@ -26,7 +26,7 @@ public class SignatureRegexes {
    * @param arg a regular expression
    * @return the argument wrapped in a capturing group
    */
-  private static final @Regex String GROUPED(@Regex String arg) {
+  private static final String GROUPED(String arg) {
     return "(" + arg + ")";
   }
 
@@ -37,7 +37,7 @@ public class SignatureRegexes {
    * @return the argument, repeated zero or more times
    */
   @SuppressWarnings("regex:return") // string concatenation
-  private static final @Regex String ANY(@Regex String arg) {
+  private static final String ANY(String arg) {
     return GROUPED(arg) + "*";
   }
 
@@ -47,7 +47,7 @@ public class SignatureRegexes {
    * @param arg a regular expression
    * @return the argument, made to match the entire string
    */
-  private static final @Regex String ANCHORED(@Regex String arg) {
+  private static final String ANCHORED(String arg) {
     return "^" + arg + "$";
   }
 
@@ -58,7 +58,7 @@ public class SignatureRegexes {
    * @return a regex that matches any one of the arguments
    */
   @SuppressWarnings("regex:return") // string concatenation
-  private static final @Regex String ALTERNATE(@Regex String... args) {
+  private static final String ALTERNATE(String... args) {
     return String.join("|", args);
   }
 
@@ -68,7 +68,7 @@ public class SignatureRegexes {
    * @param args regular expressions
    * @return a regex that matches any one of the arguments, wrapped in a capturing group
    */
-  private static final @Regex String GROUPED_ALTERNATE(@Regex String... args) {
+  private static final String GROUPED_ALTERNATE(String... args) {
     return GROUPED(ALTERNATE(args));
   }
 
@@ -77,7 +77,7 @@ public class SignatureRegexes {
   ///
 
   /** An unanchored regex that matches keywords, except primitive types. */
-  private static final @Regex String KEYWORD_NON_PRIMITIVE_TYPE =
+  private static final String KEYWORD_NON_PRIMITIVE_TYPE =
       ALTERNATE(
           "abstract",
           "assert",
@@ -131,58 +131,58 @@ public class SignatureRegexes {
           "while");
 
   /** An unanchored regex that matches primitive types. */
-  private static final @Regex String PRIMITIVE_TYPE =
+  private static final String PRIMITIVE_TYPE =
       ALTERNATE("boolean", "byte", "char", "double", "float", "int", "long", "short");
 
   /** A regex that matches field descriptors for primitive types. */
-  private static final @Regex String FD_PRIMITIVE = "[BCDFIJSZ]";
+  private static final String FD_PRIMITIVE = "[BCDFIJSZ]";
 
   /** An unanchored regex that matches keywords. */
-  private static final @Regex String KEYWORD = KEYWORD_NON_PRIMITIVE_TYPE + "|" + PRIMITIVE_TYPE;
+  private static final String KEYWORD = KEYWORD_NON_PRIMITIVE_TYPE + "|" + PRIMITIVE_TYPE;
 
   /**
    * A regex that matches identifier tokens that are not identifiers (keywords, boolean literals,
    * and the null literal).
    */
-  private static final @Regex String KEYWORD_OR_LITERAL =
+  private static final String KEYWORD_OR_LITERAL =
       ALTERNATE(KEYWORD, "true", "false", "null");
 
   /** A regex that matches Java identifier tokens, as defined by the Java grammar. */
-  private static final @Regex String IDENTIFIER_TOKEN = "[A-Za-z_$][A-Za-z_$0-9]*";
+  private static final String IDENTIFIER_TOKEN = "[A-Za-z_$][A-Za-z_$0-9]*";
 
   /** A grouped regex that matches identifiers. */
-  private static final @Regex String IDENTIFIER =
+  private static final String IDENTIFIER =
       "(?!(?:" + KEYWORD_OR_LITERAL + ")\\b)" + IDENTIFIER_TOKEN;
 
   /** An anchored regex that matches Identifier strings. */
-  public static final @Regex String IDENTIFIER_OR_PRIMITIVE_TYPE =
+  public static final String IDENTIFIER_OR_PRIMITIVE_TYPE =
       ALTERNATE(IDENTIFIER, PRIMITIVE_TYPE);
 
   /** An unanchored regex that matches DotSeparatedIdentifiers strings. */
-  private static final @Regex String DOT_SEPARATED_IDENTIFIERS =
+  private static final String DOT_SEPARATED_IDENTIFIERS =
       IDENTIFIER + ANY("\\." + IDENTIFIER);
 
   /** An unanchored regex that matches slash-separated identifiers. */
-  private static final @Regex String SLASH_SEPARATED_IDENTIFIERS =
+  private static final String SLASH_SEPARATED_IDENTIFIERS =
       IDENTIFIER + ANY("/" + IDENTIFIER);
 
   /** A regex that matches the nested-class part of a class name, for one nested class. */
-  private static final @Regex String NESTED_ONE = "\\$[A-Za-z_0-9]+";
+  private static final String NESTED_ONE = "\\$[A-Za-z_0-9]+";
 
   /** A regex that matches the nested-class part of a class name. */
-  private static final @Regex String NESTED = ANY(NESTED_ONE);
+  private static final String NESTED = ANY(NESTED_ONE);
 
   /** An unanchored regex that matches BinaryName strings. */
-  private static final @Regex String BINARY_NAME = DOT_SEPARATED_IDENTIFIERS + NESTED;
+  private static final String BINARY_NAME = DOT_SEPARATED_IDENTIFIERS + NESTED;
 
   /** A regex that matches the nested-class part of a class name. */
-  private static final @Regex String ARRAY = "(\\[\\])*";
+  private static final String ARRAY = "(\\[\\])*";
 
   /** A regex that matches InternalForm strings. */
-  public static final @Regex String INTERNAL_FORM = SLASH_SEPARATED_IDENTIFIERS + NESTED;
+  public static final String INTERNAL_FORM = SLASH_SEPARATED_IDENTIFIERS + NESTED;
 
   /** A regex that matches ClassGetName, for non-primitive, non-array types. */
-  private static final @Regex String CLASS_GET_NAME_NONPRIMITIVE_NONARRAY =
+  private static final String CLASS_GET_NAME_NONPRIMITIVE_NONARRAY =
       IDENTIFIER + "(\\." + IDENTIFIER + "|" + NESTED_ONE + ")*";
 
   ///////////////////////////////////////////////////////////////////////////
@@ -191,7 +191,7 @@ public class SignatureRegexes {
   // Creating all the patterns at load time is a bit inefficient but is convenient for clients.
 
   /** A regex that matches ArrayWithoutPackage strings. */
-  public static final @Regex String ArrayWithoutPackageRegex =
+  public static final String ArrayWithoutPackageRegex =
       ANCHORED(GROUPED(IDENTIFIER_OR_PRIMITIVE_TYPE) + ARRAY);
 
   /** A pattern that matches ArrayWithoutPackage strings. */
@@ -199,20 +199,20 @@ public class SignatureRegexes {
       Pattern.compile(ArrayWithoutPackageRegex);
 
   /** A regex that matches BinaryName strings. */
-  public static final @Regex String BinaryNameRegex = ANCHORED(BINARY_NAME);
+  public static final String BinaryNameRegex = ANCHORED(BINARY_NAME);
 
   /** A pattern that matches BinaryName strings. */
   public static final Pattern BinaryNamePattern = Pattern.compile(BinaryNameRegex);
 
   /** A regex that matches BinaryNameWithoutPackage strings. */
-  public static final @Regex String BinaryNameWithoutPackageRegex = ANCHORED(IDENTIFIER + NESTED);
+  public static final String BinaryNameWithoutPackageRegex = ANCHORED(IDENTIFIER + NESTED);
 
   /** A pattern that matches BinaryNameWithoutPackage strings. */
   public static final Pattern BinaryNameWithoutPackagePattern =
       Pattern.compile(BinaryNameWithoutPackageRegex);
 
   /** A regex that matches BinaryNameOrPrimitiveType strings. */
-  public static final @Regex String BinaryNameOrPrimitiveTypeRegex =
+  public static final String BinaryNameOrPrimitiveTypeRegex =
       ANCHORED(GROUPED_ALTERNATE(BINARY_NAME, PRIMITIVE_TYPE));
 
   /** A pattern that matches BinaryNameOrPrimitiveType strings. */
@@ -220,7 +220,7 @@ public class SignatureRegexes {
       Pattern.compile(BinaryNameOrPrimitiveTypeRegex);
 
   /** A regex that matches ClassGetName strings. */
-  public static final @Regex String ClassGetNameRegex =
+  public static final String ClassGetNameRegex =
       ANCHORED(
           GROUPED_ALTERNATE(
               // non-array
@@ -235,7 +235,7 @@ public class SignatureRegexes {
   public static final Pattern ClassGetNamePattern = Pattern.compile(ClassGetNameRegex);
 
   /** A regex that matches ClassGetSimpleName strings. */
-  public static final @Regex String ClassGetSimpleNameRegex =
+  public static final String ClassGetSimpleNameRegex =
       ANCHORED(
           GROUPED_ALTERNATE(
                   "", // empty string is a ClassGetSimpleName
@@ -246,7 +246,7 @@ public class SignatureRegexes {
   public static final Pattern ClassGetSimpleNamePattern = Pattern.compile(ClassGetSimpleNameRegex);
 
   /** A regex that matches DotSeparatedIdentifiers strings. */
-  public static final @Regex String DotSeparatedIdentifiersRegex =
+  public static final String DotSeparatedIdentifiersRegex =
       ANCHORED(DOT_SEPARATED_IDENTIFIERS);
 
   /** A pattern that matches DotSeparatedIdentifiers strings. */
@@ -254,7 +254,7 @@ public class SignatureRegexes {
       Pattern.compile(DotSeparatedIdentifiersRegex);
 
   /** A regex that matches DotSeparatedIdentifiersOrPrimitiveType strings. */
-  public static final @Regex String DotSeparatedIdentifiersOrPrimitiveTypeRegex =
+  public static final String DotSeparatedIdentifiersOrPrimitiveTypeRegex =
       ANCHORED(GROUPED_ALTERNATE(DOT_SEPARATED_IDENTIFIERS, PRIMITIVE_TYPE));
 
   /** A pattern that matches DotSeparatedIdentifiersOrPrimitiveType strings. */
@@ -262,14 +262,14 @@ public class SignatureRegexes {
       Pattern.compile(DotSeparatedIdentifiersOrPrimitiveTypeRegex);
 
   /** A regex that matches FieldDescriptor strings. */
-  public static final @Regex String FieldDescriptorRegex =
+  public static final String FieldDescriptorRegex =
       ANCHORED("\\[*(" + FD_PRIMITIVE + "|L" + INTERNAL_FORM + ";)");
 
   /** A pattern that matches FieldDescriptor strings. */
   public static final Pattern FieldDescriptorPattern = Pattern.compile(FieldDescriptorRegex);
 
   /** A regex that matches FieldDescriptorWithoutPackage strings. */
-  public static final @Regex String FieldDescriptorWithoutPackageRegex =
+  public static final String FieldDescriptorWithoutPackageRegex =
       ANCHORED("(" + FD_PRIMITIVE + "|\\[+" + FD_PRIMITIVE + "|\\[L" + IDENTIFIER + NESTED + ";)");
 
   /** A pattern that matches FieldDescriptorWithoutPackage strings. */
@@ -277,34 +277,34 @@ public class SignatureRegexes {
       Pattern.compile(FieldDescriptorWithoutPackageRegex);
 
   /** A regex that matches FieldDescriptorForPrimitive strings. */
-  public static final @Regex String FieldDescriptorForPrimitiveRegex = ANCHORED("^[BCDFIJSZ]$");
+  public static final String FieldDescriptorForPrimitiveRegex = ANCHORED("^[BCDFIJSZ]$");
 
   /** A pattern that matches FieldDescriptorForPrimitive strings. */
   public static final Pattern FieldDescriptorForPrimitivePattern =
       Pattern.compile(FieldDescriptorForPrimitiveRegex);
 
   /** A regex that matches FqBinaryName strings. */
-  public static final @Regex String FqBinaryNameRegex =
+  public static final String FqBinaryNameRegex =
       ANCHORED("(" + PRIMITIVE_TYPE + "|" + BINARY_NAME + ")" + ARRAY);
 
   /** A pattern that matches FqBinaryName strings. */
   public static final Pattern FqBinaryNamePattern = Pattern.compile(FqBinaryNameRegex);
 
   /** A regex that matches FullyQualifiedName strings. */
-  public static final @Regex String FullyQualifiedNameRegex =
+  public static final String FullyQualifiedNameRegex =
       ANCHORED("(" + PRIMITIVE_TYPE + "|" + DOT_SEPARATED_IDENTIFIERS + ")" + ARRAY);
 
   /** A pattern that matches FullyQualifiedName strings. */
   public static final Pattern FullyQualifiedNamePattern = Pattern.compile(FullyQualifiedNameRegex);
 
   /** A regex that matches Identifier strings. */
-  public static final @Regex String IdentifierRegex = ANCHORED(IDENTIFIER);
+  public static final String IdentifierRegex = ANCHORED(IDENTIFIER);
 
   /** A pattern that matches Identifier strings. */
   public static final Pattern IdentifierPattern = Pattern.compile(IdentifierRegex);
 
   /** A regex that matches IdentifierOrPrimitiveType strings. */
-  public static final @Regex String IdentifierOrPrimitiveTypeRegex =
+  public static final String IdentifierOrPrimitiveTypeRegex =
       ANCHORED(IDENTIFIER_OR_PRIMITIVE_TYPE);
 
   /** A pattern that matches IdentifierOrPrimitiveType strings. */
@@ -312,13 +312,13 @@ public class SignatureRegexes {
       Pattern.compile(IdentifierOrPrimitiveTypeRegex);
 
   /** A regex that matches InternalForm strings. */
-  public static final @Regex String InternalFormRegex = ANCHORED(INTERNAL_FORM);
+  public static final String InternalFormRegex = ANCHORED(INTERNAL_FORM);
 
   /** A pattern that matches InternalForm strings. */
   public static final Pattern InternalFormPattern = Pattern.compile(InternalFormRegex);
 
   /** A regex that matches PrimitiveType strings. */
-  public static final @Regex String PrimitiveTypeRegex = ANCHORED(PRIMITIVE_TYPE);
+  public static final String PrimitiveTypeRegex = ANCHORED(PRIMITIVE_TYPE);
 
   /** A pattern that matches PrimitiveType strings. */
   public static final Pattern PrimitiveTypePattern = Pattern.compile(PrimitiveTypeRegex);

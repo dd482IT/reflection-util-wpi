@@ -73,7 +73,7 @@ public final class Signatures {
    * @return the basename of the classfile
    */
   @SuppressWarnings("signature:return") // basename of a classfile is a Binaryname
-  public static @BinaryName String classfilenameToBinaryName(String classfilename) {
+  public static String classfilenameToBinaryName(String classfilename) {
     if (!classfilename.endsWith(".class")) {
       throw new IllegalArgumentException("Bad class file name: " + classfilename);
     }
@@ -93,12 +93,12 @@ public final class Signatures {
    * @return the basename of the classfile
    */
   @SuppressWarnings("signature:return") // basename of a classfile is a Binaryname
-  public static @BinaryName String classfilenameToBaseName(String classfilename) {
+  public static String classfilenameToBaseName(String classfilename) {
     if (!classfilename.endsWith(".class")) {
       throw new IllegalArgumentException("Bad class file name: " + classfilename);
     }
     @SuppressWarnings("index:assignment") // "/" is not the last character
-    @IndexFor("classfilename") int start = classfilename.lastIndexOf("/") + 1;
+    int start = classfilename.lastIndexOf("/") + 1;
     int end = classfilename.length() - 6;
     return classfilename.substring(start, end);
   }
@@ -117,8 +117,8 @@ public final class Signatures {
    * @param classname the class name
    * @return the qualified class name
    */
-  public static @BinaryName String addPackage(
-      @Nullable @DotSeparatedIdentifiers String packagename, @BinaryName String classname) {
+  public static String addPackage(
+      String packagename, String classname) {
     if (!isBinaryName(classname)) {
       throw new Error("Bad classname argument to addPackage: " + classname);
     }
@@ -129,7 +129,7 @@ public final class Signatures {
         throw new Error("Bad packagename argument to addPackage: " + packagename);
       }
       @SuppressWarnings("signature:assignment") // string concatenation
-      @BinaryName String result = packagename + "." + classname;
+      String result = packagename + "." + classname;
       return result;
     }
   }
@@ -146,7 +146,6 @@ public final class Signatures {
    * @return true if the string is a @ArrayWithoutPackage
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = ArrayWithoutPackage.class)
   public static boolean isArrayWithoutPackage(String s) {
     return SignatureRegexes.ArrayWithoutPackagePattern.matcher(s).matches();
   }
@@ -159,7 +158,6 @@ public final class Signatures {
    * @return true if the string is a @BinaryName
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = BinaryName.class)
   public static boolean isBinaryName(String s) {
     return SignatureRegexes.BinaryNamePattern.matcher(s).matches();
   }
@@ -172,7 +170,6 @@ public final class Signatures {
    * @return true if the string is a @BinaryNameWithoutPackage
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = BinaryNameWithoutPackage.class)
   public static boolean isBinaryNameWithoutPackage(String s) {
     return SignatureRegexes.BinaryNameWithoutPackagePattern.matcher(s).matches();
   }
@@ -185,7 +182,6 @@ public final class Signatures {
    * @return true if the string is a @BinaryNameOrPrimitiveType
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = BinaryNameOrPrimitiveType.class)
   public static boolean isBinaryNameOrPrimitiveType(String s) {
     return SignatureRegexes.BinaryNameOrPrimitiveTypePattern.matcher(s).matches();
   }
@@ -198,7 +194,6 @@ public final class Signatures {
    * @return true if the string is a @ClassGetName
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = ClassGetName.class)
   public static boolean isClassGetName(String s) {
     return SignatureRegexes.ClassGetNamePattern.matcher(s).matches();
   }
@@ -211,7 +206,6 @@ public final class Signatures {
    * @return true if the string is a @ClassGetSimpleName
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = ClassGetSimpleName.class)
   public static boolean isClassGetSimpleName(String s) {
     return SignatureRegexes.ClassGetSimpleNamePattern.matcher(s).matches();
   }
@@ -224,7 +218,6 @@ public final class Signatures {
    * @return true if the string is a @DotSeparatedIdentifiers
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = DotSeparatedIdentifiers.class)
   public static boolean isDotSeparatedIdentifiers(String s) {
     return SignatureRegexes.DotSeparatedIdentifiersPattern.matcher(s).matches();
   }
@@ -237,10 +230,6 @@ public final class Signatures {
    * @return true if the string is a @DotSeparatedIdentifiersOrPrimitiveType
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(
-      result = true,
-      expression = "#1",
-      qualifier = DotSeparatedIdentifiersOrPrimitiveType.class)
   public static boolean isDotSeparatedIdentifiersOrPrimitiveType(String s) {
     return SignatureRegexes.DotSeparatedIdentifiersOrPrimitiveTypePattern.matcher(s).matches();
   }
@@ -253,7 +242,6 @@ public final class Signatures {
    * @return true if the string is a @FieldDescriptor
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = FieldDescriptor.class)
   public static boolean isFieldDescriptor(String s) {
     return SignatureRegexes.FieldDescriptorPattern.matcher(s).matches();
   }
@@ -266,10 +254,6 @@ public final class Signatures {
    * @return true if the string is a @FieldDescriptorWithoutPackage
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(
-      result = true,
-      expression = "#1",
-      qualifier = FieldDescriptorWithoutPackage.class)
   public static boolean isFieldDescriptorWithoutPackage(String s) {
     return SignatureRegexes.FieldDescriptorWithoutPackagePattern.matcher(s).matches();
   }
@@ -281,10 +265,6 @@ public final class Signatures {
    * @return true if the string is a @FieldDescriptorForPrimitive
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(
-      result = true,
-      expression = "#1",
-      qualifier = FieldDescriptorForPrimitive.class)
   public static boolean isFieldDescriptorForPrimitive(String s) {
     return SignatureRegexes.FieldDescriptorForPrimitivePattern.matcher(s).matches();
   }
@@ -297,7 +277,6 @@ public final class Signatures {
    * @return true if the string is a @FqBinaryName
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = FqBinaryName.class)
   public static boolean isFqBinaryName(String s) {
     return SignatureRegexes.FqBinaryNamePattern.matcher(s).matches();
   }
@@ -310,7 +289,6 @@ public final class Signatures {
    * @return true if the string is a @FullyQualifiedName
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = FullyQualifiedName.class)
   public static boolean isFullyQualifiedName(String s) {
     return SignatureRegexes.FullyQualifiedNamePattern.matcher(s).matches();
   }
@@ -323,7 +301,6 @@ public final class Signatures {
    * @return true if the string is a @Identifier
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = Identifier.class)
   public static boolean isIdentifier(String s) {
     return SignatureRegexes.IdentifierPattern.matcher(s).matches();
   }
@@ -336,7 +313,6 @@ public final class Signatures {
    * @return true if the string is a @IdentifierOrPrimitiveType
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = IdentifierOrPrimitiveType.class)
   public static boolean isIdentifierOrPrimitiveType(String s) {
     return SignatureRegexes.IdentifierOrPrimitiveTypePattern.matcher(s).matches();
   }
@@ -349,7 +325,6 @@ public final class Signatures {
    * @return true if the string is a @InternalForm
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = InternalForm.class)
   public static boolean isInternalForm(String s) {
     return SignatureRegexes.InternalFormPattern.matcher(s).matches();
   }
@@ -361,7 +336,6 @@ public final class Signatures {
    * @return true if the string is a @PrimitiveType
    */
   @SuppressWarnings("signature")
-  @EnsuresQualifierIf(result = true, expression = "#1", qualifier = PrimitiveType.class)
   public static boolean isPrimitiveType(String s) {
     return SignatureRegexes.PrimitiveTypePattern.matcher(s).matches();
   }
@@ -379,7 +353,7 @@ public final class Signatures {
    */
   public static class ClassnameAndDimensions {
     /** The class name. It is a binary name or a primitive. */
-    public final @FqBinaryName String classname;
+    public final String classname;
     /** The number of array dimensions. */
     public final int dimensions;
 
@@ -389,7 +363,7 @@ public final class Signatures {
      * @param classname the class name: a binary name or a primitive
      * @param dimensions the number of array dimensions
      */
-    public ClassnameAndDimensions(@FqBinaryName String classname, int dimensions) {
+    public ClassnameAndDimensions(String classname, int dimensions) {
       this.classname = classname;
       this.dimensions = dimensions;
     }
@@ -401,20 +375,20 @@ public final class Signatures {
      *     name, but with $ separating outer from inner types)
      * @return the result of parsing the type name
      */
-    public static ClassnameAndDimensions parseFqBinaryName(@FqBinaryName String typename) {
+    public static ClassnameAndDimensions parseFqBinaryName(String typename) {
       Matcher m = arrayBracketsPattern.matcher(typename);
       @SuppressWarnings(
           "signature:assignment" // classname is a @ClassGetName for a non-array; equivalently, a
       // binary name for a non-array
       )
-      @FqBinaryName String classname = m.replaceFirst("");
+      String classname = m.replaceFirst("");
       int dimensions = (typename.length() - classname.length()) / 2;
       return new ClassnameAndDimensions(classname, dimensions);
     }
   }
 
   /** A map from Java primitive type name (such as "int") to field descriptor (such as "I"). */
-  private static HashMap<@PrimitiveType String, @FieldDescriptor String>
+  private static HashMap<String, String>
       primitiveToFieldDescriptor = new HashMap<>(8);
 
   static {
@@ -459,7 +433,7 @@ public final class Signatures {
    * @return name of the type, in field descriptor format
    * @throws IllegalArgumentException if primitiveName is not a valid primitive type name
    */
-  public static @FieldDescriptor String primitiveTypeNameToFieldDescriptor(String primitiveName) {
+  public static String primitiveTypeNameToFieldDescriptor(String primitiveName) {
     String result = primitiveToFieldDescriptor.get(primitiveName);
     if (result == null) {
       throw new IllegalArgumentException("Not the name of a primitive type: " + primitiveName);
@@ -496,8 +470,8 @@ public final class Signatures {
   // fully-qualified names for them.  Given a valid binary name "pkg.Outer$22", it produces
   // "pkg.Outer.22" which is not a valid fully-qualified name.
   )
-  public static @FullyQualifiedName String binaryNameToFullyQualified(
-      @BinaryName String binaryName) {
+  public static String binaryNameToFullyQualified(
+      String binaryName) {
     return binaryName.replaceAll("\\$", ".");
   }
 
@@ -570,7 +544,7 @@ public final class Signatures {
    * @param internalForm a class name in internal form
    * @return the class name in ClassGetName form
    */
-  public static @ClassGetName String internalFormToClassGetName(@InternalForm String internalForm) {
+  public static String internalFormToClassGetName(String internalForm) {
     return internalForm.replace('/', '.');
   }
 
@@ -580,7 +554,7 @@ public final class Signatures {
    * @param internalForm a class name in internal form
    * @return the class name sa a binary name
    */
-  public static @BinaryName String internalFormToBinaryName(@InternalForm String internalForm) {
+  public static String internalFormToBinaryName(String internalForm) {
     return internalForm.replace('/', '.');
   }
 
@@ -590,8 +564,8 @@ public final class Signatures {
    * @param internalForm a type in internal form
    * @return a fully-qualified name
    */
-  public static @FullyQualifiedName String internalFormToFullyQualified(
-      @InternalForm String internalForm) {
+  public static String internalFormToFullyQualified(
+      String internalForm) {
     return binaryNameToFullyQualified(internalFormToBinaryName(internalForm));
   }
 
@@ -637,7 +611,7 @@ public final class Signatures {
       throw new Error("Malformed arglist: " + arglist);
     }
     String result = "(";
-    @Positive int pos = 1;
+    int pos = 1;
     while (pos < arglist.length() - 1) {
       if (pos > 1) {
         result += ", ";
