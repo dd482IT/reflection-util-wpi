@@ -1,0 +1,209 @@
+BUILD SUCCESSFUL in 634ms
+1 actionable task: 1 executed
+putting the diff for iteration 1 into /home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/iteration1.diff
+entering iteration 2
+
+> Task :compileJava
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:376: warning: [cast] redundant cast to Class<?>[]
+      Class<?>[] argclassesRes = (Class<?>[]) argclassesTmp;
+                                 ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [formatter:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by FormatterChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [formatter:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by FormatterChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [index:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by IndexChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [index:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by IndexChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:427: warning: [interning:argument] incompatible argument for parameter value of set.
+        f.set(o, value);
+                 ^
+  found   : Object
+  required: @Interned Object
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [interning:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by InterningChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [interning:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by InterningChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [lock:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by LockChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [lock:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by LockChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:68: warning: [lock:unneeded.suppression] warning suppression "lock:method.guarantee.violated" is not used by LockChecker
+    @SuppressWarnings({"lock:method.guarantee.violated"}) // order doesn't matter
+    ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [nullness:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by NullnessChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [nullness:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by NullnessChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [regex:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by RegexChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [regex:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by RegexChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [builder:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by ResourceLeakChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [builder:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by ResourceLeakChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:221: warning: [signature:argument] incompatible argument for parameter name of defineClass.
+      Class<?> returnClass = defineClass(className, classBytes, 0, numbytes);
+                                         ^
+  found   : @SignatureUnknown String
+  required: @BinaryName String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:372: warning: [signature:argument] incompatible argument for parameter bn of binaryNameToClassGetName.
+        String cgnArgname = Signatures.binaryNameToClassGetName(bnArgname);
+                                                                ^
+  found   : @SignatureUnknown String
+  required: @BinaryName String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [signature:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by SignatureChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [signature:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by SignatureChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [signedness:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by SignednessChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [signedness:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by SignednessChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [initializedfields:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by InitializedFieldsChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [initializedfields:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by InitializedFieldsChecker
+  @SuppressWarnings({
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:199: warning: [regex:argument] incompatible argument for parameter regex of compile.
+      Pattern.compile(ArrayWithoutPackageRegex);
+                      ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:205: warning: [regex:argument] incompatible argument for parameter regex of compile.
+  public static final Pattern BinaryNamePattern = Pattern.compile(BinaryNameRegex);
+                                                                  ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:212: warning: [regex:argument] incompatible argument for parameter regex of compile.
+      Pattern.compile(BinaryNameWithoutPackageRegex);
+                      ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:220: warning: [regex:argument] incompatible argument for parameter regex of compile.
+      Pattern.compile(BinaryNameOrPrimitiveTypeRegex);
+                      ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:235: warning: [regex:argument] incompatible argument for parameter regex of compile.
+  public static final Pattern ClassGetNamePattern = Pattern.compile(ClassGetNameRegex);
+                                                                    ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:246: warning: [regex:argument] incompatible argument for parameter regex of compile.
+  public static final Pattern ClassGetSimpleNamePattern = Pattern.compile(ClassGetSimpleNameRegex);
+                                                                          ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:254: warning: [regex:argument] incompatible argument for parameter regex of compile.
+      Pattern.compile(DotSeparatedIdentifiersRegex);
+                      ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:262: warning: [regex:argument] incompatible argument for parameter regex of compile.
+      Pattern.compile(DotSeparatedIdentifiersOrPrimitiveTypeRegex);
+                      ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:269: warning: [regex:argument] incompatible argument for parameter regex of compile.
+  public static final Pattern FieldDescriptorPattern = Pattern.compile(FieldDescriptorRegex);
+                                                                       ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:277: warning: [regex:argument] incompatible argument for parameter regex of compile.
+      Pattern.compile(FieldDescriptorWithoutPackageRegex);
+                      ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:284: warning: [regex:argument] incompatible argument for parameter regex of compile.
+      Pattern.compile(FieldDescriptorForPrimitiveRegex);
+                      ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:291: warning: [regex:argument] incompatible argument for parameter regex of compile.
+  public static final Pattern FqBinaryNamePattern = Pattern.compile(FqBinaryNameRegex);
+                                                                    ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:298: warning: [regex:argument] incompatible argument for parameter regex of compile.
+  public static final Pattern FullyQualifiedNamePattern = Pattern.compile(FullyQualifiedNameRegex);
+                                                                          ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:304: warning: [regex:argument] incompatible argument for parameter regex of compile.
+  public static final Pattern IdentifierPattern = Pattern.compile(IdentifierRegex);
+                                                                  ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:312: warning: [regex:argument] incompatible argument for parameter regex of compile.
+      Pattern.compile(IdentifierOrPrimitiveTypeRegex);
+                      ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:318: warning: [regex:argument] incompatible argument for parameter regex of compile.
+  public static final Pattern InternalFormPattern = Pattern.compile(InternalFormRegex);
+                                                                    ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:324: warning: [regex:argument] incompatible argument for parameter regex of compile.
+  public static final Pattern PrimitiveTypePattern = Pattern.compile(PrimitiveTypeRegex);
+                                                                     ^
+  found   : String
+  required: @Regex String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:39: warning: [regex:unneeded.suppression] warning suppression "regex:return" is not used by RegexChecker
+  @SuppressWarnings("regex:return") // string concatenation
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:60: warning: [regex:unneeded.suppression] warning suppression "regex:return" is not used by RegexChecker
+  @SuppressWarnings("regex:return") // string concatenation
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:100: warning: [index:unneeded.suppression] warning suppression "index:assignment" is not used by IndexChecker
+    @SuppressWarnings("index:assignment") // "/" is not the last character
+    ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:367: warning: [samelen:assignment] incompatible types in assignment.
+      this.classname = classname;
+                       ^
+  found   : @SameLen("classname") String
+  required: @SameLen("this.classname") String
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:378: warning: [samelen:flowexpr.parse.error] cannot parse the expression 'this.classname' in the postcondition EnsuresQualifier on the declaration of method 'parseFqBinaryName': Invalid 'this' because "this" isn't allowed here
+    public static ClassnameAndDimensions parseFqBinaryName(String typename) {
+                                         ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:417: warning: [samelen:flowexpr.parse.error.postcondition] error parsing the postcondition expression for parseFqBinaryName(String)
+    ClassnameAndDimensions cad = ClassnameAndDimensions.parseFqBinaryName(typename);
+                                                                         ^
+  cannot parse the expression Invalid 'this' because "this" isn't allowed here
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:75: warning: [signature:unneeded.suppression] warning suppression "signature:return" is not used by SignatureChecker
+  @SuppressWarnings("signature:return") // basename of a classfile is a Binaryname
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:95: warning: [signature:unneeded.suppression] warning suppression "signature:return" is not used by SignatureChecker
+  @SuppressWarnings("signature:return") // basename of a classfile is a Binaryname
+  ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:131: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
+      @SuppressWarnings("signature:assignment") // string concatenation
+      ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:380: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
+      @SuppressWarnings(
+      ^
+/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:468: warning: [signature:unneeded.suppression] warning suppression "signature:return" is not used by SignatureChecker
+  @SuppressWarnings(
+  ^
+53 warnings
