@@ -7,58 +7,12 @@ entering iteration 2
 /home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:376: warning: [cast] redundant cast to Class<?>[]
       Class<?>[] argclassesRes = (Class<?>[]) argclassesTmp;
                                  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [formatter:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by FormatterChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [formatter:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by FormatterChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [index:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by IndexChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [index:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by IndexChecker
-  @SuppressWarnings({
-  ^
+
 /home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:427: warning: [interning:argument] incompatible argument for parameter value of set.
         f.set(o, value);
                  ^
   found   : Object
   required: @Interned Object
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [interning:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by InterningChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [interning:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by InterningChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [lock:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by LockChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [lock:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by LockChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:68: warning: [lock:unneeded.suppression] warning suppression "lock:method.guarantee.violated" is not used by LockChecker
-    @SuppressWarnings({"lock:method.guarantee.violated"}) // order doesn't matter
-    ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [nullness:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by NullnessChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [nullness:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by NullnessChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [regex:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by RegexChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [regex:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by RegexChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [builder:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by ResourceLeakChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [builder:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by ResourceLeakChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:221: warning: [signature:argument] incompatible argument for parameter name of defineClass.
-      Class<?> returnClass = defineClass(className, classBytes, 0, numbytes);
                                          ^
   found   : @SignatureUnknown String
   required: @BinaryName String
@@ -67,24 +21,7 @@ entering iteration 2
                                                                 ^
   found   : @SignatureUnknown String
   required: @BinaryName String
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [signature:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by SignatureChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [signature:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by SignatureChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [signedness:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by SignednessChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [signedness:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by SignednessChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [initializedfields:unneeded.suppression] warning suppression "allcheckers:method.guarantee.violated" is not used by InitializedFieldsChecker
-  @SuppressWarnings({
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:51: warning: [initializedfields:unneeded.suppression] warning suppression "allcheckers:purity.not.deterministic.call" is not used by InitializedFieldsChecker
-  @SuppressWarnings({
-  ^
+  
 /home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:199: warning: [regex:argument] incompatible argument for parameter regex of compile.
       Pattern.compile(ArrayWithoutPackageRegex);
                       ^
@@ -170,15 +107,7 @@ entering iteration 2
                                                                      ^
   found   : String
   required: @Regex String
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:39: warning: [regex:unneeded.suppression] warning suppression "regex:return" is not used by RegexChecker
-  @SuppressWarnings("regex:return") // string concatenation
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:60: warning: [regex:unneeded.suppression] warning suppression "regex:return" is not used by RegexChecker
-  @SuppressWarnings("regex:return") // string concatenation
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:100: warning: [index:unneeded.suppression] warning suppression "index:assignment" is not used by IndexChecker
-    @SuppressWarnings("index:assignment") // "/" is not the last character
-    ^
+
 /home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:367: warning: [samelen:assignment] incompatible types in assignment.
       this.classname = classname;
                        ^
@@ -191,19 +120,5 @@ entering iteration 2
     ClassnameAndDimensions cad = ClassnameAndDimensions.parseFqBinaryName(typename);
                                                                          ^
   cannot parse the expression Invalid 'this' because "this" isn't allowed here
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:75: warning: [signature:unneeded.suppression] warning suppression "signature:return" is not used by SignatureChecker
-  @SuppressWarnings("signature:return") // basename of a classfile is a Binaryname
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:95: warning: [signature:unneeded.suppression] warning suppression "signature:return" is not used by SignatureChecker
-  @SuppressWarnings("signature:return") // basename of a classfile is a Binaryname
-  ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:131: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
-      @SuppressWarnings("signature:assignment") // string concatenation
-      ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:380: warning: [signature:unneeded.suppression] warning suppression "signature:assignment" is not used by SignatureChecker
-      @SuppressWarnings(
-      ^
-/home/dan/Documents/CFResearch/experiments-live/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:468: warning: [signature:unneeded.suppression] warning suppression "signature:return" is not used by SignatureChecker
-  @SuppressWarnings(
   ^
 53 warnings
