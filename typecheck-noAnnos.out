@@ -1,6 +1,96 @@
-> Task :createCheckerFrameworkManifest UP-TO-DATE
-
-> Task :compileJava
-
-> Task :compileJava FAILED
-2 actionable tasks: 1 executed, 1 up-to-date
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:376: warning: [cast] redundant cast to Class<?>[]
+      Class<?>[] argclassesRes = (Class<?>[]) argclassesTmp;
+                                 ^
+error: warnings found and -Werror specified
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [formatter:type.checking.not.run] FormatterChecker did not run because of a previous error issued by javac
+public final class ReflectionPlume {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [index:type.checking.not.run] IndexChecker did not run because of a previous error issued by javac
+public final class ReflectionPlume {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [interning:type.checking.not.run] InterningChecker did not run because of a previous error issued by javac
+public final class ReflectionPlume {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [lock:type.checking.not.run] LockChecker did not run because of a previous error issued by javac
+public final class ReflectionPlume {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [nullness:type.checking.not.run] NullnessChecker did not run because of a previous error issued by javac
+public final class ReflectionPlume {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [regex:type.checking.not.run] RegexChecker did not run because of a previous error issued by javac
+public final class ReflectionPlume {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [builder:type.checking.not.run] ResourceLeakChecker did not run because of a previous error issued by javac
+public final class ReflectionPlume {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [signature:type.checking.not.run] SignatureChecker did not run because of a previous error issued by javac
+public final class ReflectionPlume {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [signedness:type.checking.not.run] SignednessChecker did not run because of a previous error issued by javac
+public final class ReflectionPlume {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [initializedfields:type.checking.not.run] InitializedFieldsChecker did not run because of a previous error issued by javac
+public final class ReflectionPlume {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:12: error: [formatter:type.checking.not.run] FormatterChecker did not run because of a previous error issued by javac
+public class SignatureRegexes {
+       ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:12: error: [index:type.checking.not.run] IndexChecker did not run because of a previous error issued by javac
+public class SignatureRegexes {
+       ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:12: error: [interning:type.checking.not.run] InterningChecker did not run because of a previous error issued by javac
+public class SignatureRegexes {
+       ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:12: error: [lock:type.checking.not.run] LockChecker did not run because of a previous error issued by javac
+public class SignatureRegexes {
+       ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:12: error: [nullness:type.checking.not.run] NullnessChecker did not run because of a previous error issued by javac
+public class SignatureRegexes {
+       ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:12: error: [regex:type.checking.not.run] RegexChecker did not run because of a previous error issued by javac
+public class SignatureRegexes {
+       ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:12: error: [builder:type.checking.not.run] ResourceLeakChecker did not run because of a previous error issued by javac
+public class SignatureRegexes {
+       ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:12: error: [signature:type.checking.not.run] SignatureChecker did not run because of a previous error issued by javac
+public class SignatureRegexes {
+       ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:12: error: [signedness:type.checking.not.run] SignednessChecker did not run because of a previous error issued by javac
+public class SignatureRegexes {
+       ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/SignatureRegexes.java:12: error: [initializedfields:type.checking.not.run] InitializedFieldsChecker did not run because of a previous error issued by javac
+public class SignatureRegexes {
+       ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:38: error: [formatter:type.checking.not.run] FormatterChecker did not run because of a previous error issued by javac
+public final class Signatures {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:38: error: [index:type.checking.not.run] IndexChecker did not run because of a previous error issued by javac
+public final class Signatures {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:38: error: [interning:type.checking.not.run] InterningChecker did not run because of a previous error issued by javac
+public final class Signatures {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:38: error: [lock:type.checking.not.run] LockChecker did not run because of a previous error issued by javac
+public final class Signatures {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:38: error: [nullness:type.checking.not.run] NullnessChecker did not run because of a previous error issued by javac
+public final class Signatures {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:38: error: [regex:type.checking.not.run] RegexChecker did not run because of a previous error issued by javac
+public final class Signatures {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:38: error: [builder:type.checking.not.run] ResourceLeakChecker did not run because of a previous error issued by javac
+public final class Signatures {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:38: error: [signature:type.checking.not.run] SignatureChecker did not run because of a previous error issued by javac
+public final class Signatures {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:38: error: [signedness:type.checking.not.run] SignednessChecker did not run because of a previous error issued by javac
+public final class Signatures {
+             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:38: error: [initializedfields:type.checking.not.run] InitializedFieldsChecker did not run because of a previous error issued by javac
+public final class Signatures {
+             ^
+31 errors
+1 warning
