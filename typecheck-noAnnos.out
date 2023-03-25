@@ -1,16 +1,12 @@
 /Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:376: warning: [cast] redundant cast to Class<?>[]
       Class<?>[] argclassesRes = (Class<?>[]) argclassesTmp;
                                  ^
-error: warnings found and -Werror specified
-/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [formatter:type.checking.not.run] FormatterChecker did not run because of a previous error issued by javac
-public final class ReflectionPlume {
-             ^
-/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [index:type.checking.not.run] IndexChecker did not run because of a previous error issued by javac
-public final class ReflectionPlume {
-             ^
-/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [interning:type.checking.not.run] InterningChecker did not run because of a previous error issued by javac
-public final class ReflectionPlume {
-             ^
+/Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:427: error: [interning:argument] incompatible argument for parameter value of set.
+        f.set(o, value);
+                 ^
+  found   : Object
+  required: @Interned Object
+
 /Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/ReflectionPlume.java:32: error: [lock:type.checking.not.run] LockChecker did not run because of a previous error issued by javac
 public final class ReflectionPlume {
              ^
@@ -92,5 +88,3 @@ public final class Signatures {
 /Users/daniel/Documents/njit/WPI-Research/reflection-util-wpi/src/main/java/org/plumelib/reflection/Signatures.java:38: error: [initializedfields:type.checking.not.run] InitializedFieldsChecker did not run because of a previous error issued by javac
 public final class Signatures {
              ^
-31 errors
-1 warning
